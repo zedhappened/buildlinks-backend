@@ -12,10 +12,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
-// app.use(
-
-// )
+app.use('/', (req, res)=>{
+    res.status(200).json({
+        message: "Hello World!"
+    })
+})
 
 // middleware to add userId to the request
 //app.use(authMiddleware)
