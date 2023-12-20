@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import corsOptions from './config/cosrOptions.config.js';
+import corsOptions from './config/corsOptions.config.js';
 import authMiddleware from './middlewares/auth.middleware.js';
 import errorHandler from './middlewares/error-handler.middleware.js';
 import fallbackRoute from './routes/fallback.route.js';
