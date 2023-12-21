@@ -1,3 +1,5 @@
+import "express-async-errors";
+
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -7,6 +9,7 @@ import corsOptions from './config/corsOptions.config.js';
 import authMiddleware from './middlewares/auth.middleware.js';
 import errorHandler from './middlewares/error-handler.middleware.js';
 import fallbackRoute from './routes/fallback.route.js';
+import userRouter from './routes/user.route.js';
 
 dotenv.config();
 
@@ -20,7 +23,7 @@ app.use(express.json());
 app.use(authMiddleware)
 
 // app routes
-//app.use('/user', userRouter)
+app.use('/user', userRouter)
 
 // fallback route to catch unmatched routes
 app.use(fallbackRoute)
