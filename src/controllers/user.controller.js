@@ -10,7 +10,7 @@ export const signIn = async (req, res) => {
     const { email, password } = req.body
 
     if (!email || !password)
-        throw new Error("Email and password are required")
+        throw new Error("Email & password are required")
 
     const user = await User.findOne({ email })
 
@@ -24,23 +24,23 @@ export const signIn = async (req, res) => {
 
     const accessToken = generateAccessToken({ id: (user._id).toString(), email, roles: user.roles })
 
-    res.json({ user: user._id, accessToken })
+    res.json({ user: user._id, roles: user.roles, accessToken })
 
 }
 export const signUp = async (req, res) => {
 
-    const { email, password, roles } = req.body
+    const { email, password} = req.body
 
-    if (!email || !password || !roles)
-        throw new Error("Email, password and roles are required")
+    if (!email || !password)
+        throw new Error("Email & password are required")
 
     const hashedPassword = await bcrypt.hash(password, 12)
 
-    const user = await User.create({ email, hashedPassword, roles })
+    const user = await User.create({ email, hashedPassword, roles: ["user"] })
 
-    const accessToken = generateAccessToken({ id: (user._id).toString(), email, roles })
+    const accessToken = generateAccessToken({ id: (user._id).toString(), email, roles: user.roles })
 
-    res.json({ user: user._id, accessToken })
+    res.json({ user: user._id, roles: user.roles, accessToken })
 
 }
 
