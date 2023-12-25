@@ -10,6 +10,7 @@ import authMiddleware from './middlewares/auth.middleware.js';
 import errorHandler from './middlewares/error-handler.middleware.js';
 import fallbackRoute from './routes/fallback.route.js';
 import userRouter from './routes/user.route.js';
+import colorRouter from "./routes/color.route.js";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(authMiddleware)
 
 // app routes
 app.use('/user', userRouter)
+app.use('/color', colorRouter)
 
 // fallback route to catch unmatched routes
 app.use(fallbackRoute)
