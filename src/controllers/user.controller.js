@@ -29,18 +29,23 @@ export const signIn = async (req, res) => {
 }
 export const signUp = async (req, res) => {
 
-    const { email, password} = req.body
+    const { email, password } = req.body
 
     if (!email || !password)
         throw new Error("Email & password are required")
 
+    const user = await User.findOne({ email })
+
+    if (user)
+        throw new Error("Email already exists")
+
     const hashedPassword = await bcrypt.hash(password, 12)
 
-    const user = await User.create({ email, hashedPassword, roles: ["user"] })
+    const newUser = await User.create({ email, hashedPassword, roles: ["user"] })
 
-    const accessToken = generateAccessToken({ id: (user._id).toString(), email, roles: user.roles })
+    const accessToken = generateAccessToken({ id: (newUser._id).toString(), email, roles: newUser.roles })
 
-    res.json({ user: user._id, roles: user.roles, accessToken })
+    res.json({ user: newUser._id, roles: newUser.roles, accessToken })
 
 }
 
