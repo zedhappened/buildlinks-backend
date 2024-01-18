@@ -1,12 +1,16 @@
 import mongoose from "mongoose";
 
 const ColorSchema = new mongoose.Schema({
-    title: {
+    colorName: {
+        required: true,
+        type: String
+    },
+    colorCode: {
         required: true,
         unique: true,
         type: String
     },
-    image: {
+    colorImage: {
         required: true,
         type: String
     },

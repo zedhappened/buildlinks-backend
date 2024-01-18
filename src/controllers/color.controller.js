@@ -1,19 +1,21 @@
-import { isValidObjectId } from 'mongoose';
 import Color from '../models/color.model.js';
 
-export const getColors = async (req, res) => {
-    const colors = await Color.find();
+export const getColorsByPage = async (req, res) => {
+    const { page } = req.params;
+    const colors = await Color.find().limit(12).skip(12 * (page - 1));
 
-    res.json(colors);
+    const count = await Color.countDocuments()
+
+    res.json({ colors, pages: Math.floor(count / 12) + 1 });
 }
 
 export const createColor = async (req, res) => {
-    const { title, image } = req.body;
+    const { colorName, colorCode, colorImage } = req.body;
 
-    if (!title || !image)
-        throw new Error("Title & image are required")
+    if (!colorName || !colorCode || !colorImage)
+        throw new Error("All fields are required")
 
-    const newColor = await Color.create({ title, image });
+    const newColor = await Color.create({ colorName, colorCode, colorImage });
 
     res.json(newColor);
 }
@@ -42,12 +44,12 @@ export const deleteColor = async (req, res) => {
 
 export const updateColor = async (req, res) => {
     const { id } = req.params;
-    const { title, image } = req.body;
+    const { colorName, colorCode, colorImage } = req.body;
 
-    if (!title || !image)
-        throw new Error("Title & image are required")
+    if (!colorName || !colorCode || !colorImage)
+        throw new Error("All fields are required")
 
-    const updatedColor = await Color.findByIdAndUpdate(id, { title, image }, { new: true });
+    const updatedColor = await Color.findByIdAndUpdate(id, { colorName, colorCode, colorImage }, { new: true });
 
     if (!updatedColor)
         throw new Error("Invalid id")
