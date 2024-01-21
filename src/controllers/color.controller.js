@@ -1,12 +1,26 @@
 import Color from '../models/color.model.js';
 
-export const getColorsByPage = async (req, res) => {
-    const { page } = req.params;
-    const colors = await Color.find().limit(12).skip(12 * (page - 1));
+export const getColors = async (req, res) => {
+    const { page, search } = req.query;
 
-    const count = await Color.countDocuments()
+    let colors;
+    if (search != "null") {
+        colors = await Color.find({ $or: [{ colorCode: { $regex: search, $options: 'i' } }, { colorName: { $regex: search, $options: 'i' } }] }).limit(12).skip(12 * (page - 1));
+    } else {
+        colors = await Color.find().limit(12).skip(12 * (page - 1));
+    }
+
+    const count = colors.length;
 
     res.json({ colors, pages: Math.floor(count / 12) + 1 });
+}
+
+export const getColorById = async (req, res) => {
+    const { id } = req.params;
+
+    const color = await Color.findById(id);
+
+    res.json(color);
 }
 
 export const createColor = async (req, res) => {
