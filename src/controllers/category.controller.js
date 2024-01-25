@@ -1,6 +1,6 @@
 import { Category } from "../models";
 
-export const getCategories = async (req, res) => {
+export const getAllCategories = async (req, res) => {
 
     const categories = await Category.find();
 

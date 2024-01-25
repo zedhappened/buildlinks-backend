@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { isAdmin } from "../middlewares";
-import { createCategory, deleteCategory, getCategories, updateCategory } from "../controllers";
+import { createCategory, deleteCategory, getAllCategories, updateCategory } from "../controllers";
 
 const categoryRouter = Router();
 
-categoryRouter.get('/', getCategories);
+categoryRouter.get('/all', getAllCategories);
 categoryRouter.post('/', isAdmin(), createCategory);
 categoryRouter.delete('/:id', isAdmin(), deleteCategory);
 categoryRouter.patch('/:id', isAdmin(), updateCategory);
