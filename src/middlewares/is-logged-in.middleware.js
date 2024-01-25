@@ -1,5 +1,5 @@
 
-const isLoggedIn = (loggedIn) => async (req, res, next) => {
+export const isLoggedIn = (loggedIn) => async (req, res, next) => {
     if (loggedIn) {
         if (req?.user)
             return next();
@@ -10,5 +10,3 @@ const isLoggedIn = (loggedIn) => async (req, res, next) => {
         throw new Error("User already logged in")
     }
 };
-
-export default isLoggedIn

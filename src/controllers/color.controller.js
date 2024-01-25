@@ -1,4 +1,4 @@
-import Color from '../models/color.model.js';
+import { Color } from '../models';
 
 export const getColors = async (req, res) => {
     const { page, search } = req.query;

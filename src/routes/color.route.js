@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createColor, deleteColor, getColorById, getColors, updateColor } from "../controllers/color.controller.js";
-import isAdmin from "../middlewares/is-admin.middleware.js";
+import { createColor, deleteColor, getColorById, getColors, updateColor } from "../controllers";
+import { isAdmin } from "../middlewares";
 
 const colorRouter = Router();
 

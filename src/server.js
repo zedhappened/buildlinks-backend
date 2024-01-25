@@ -6,11 +6,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 
 import corsOptions from './config/corsOptions.config.js';
-import authMiddleware from './middlewares/auth.middleware.js';
-import errorHandler from './middlewares/error-handler.middleware.js';
-import fallbackRoute from './routes/fallback.route.js';
-import userRouter from './routes/user.route.js';
-import colorRouter from "./routes/color.route.js";
+import { authMiddleware, errorHandler } from './middlewares';
+import { categoryRouter, colorRouter, fallbackRoute, userRouter } from './routes';
 
 dotenv.config();
 
@@ -26,6 +23,7 @@ app.use(authMiddleware)
 // app routes
 app.use('/user', userRouter)
 app.use('/color', colorRouter)
+app.use('/category', categoryRouter)
 
 // fallback route to catch unmatched routes
 app.use(fallbackRoute)

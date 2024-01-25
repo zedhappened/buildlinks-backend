@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { signIn, signUp } from "../controllers/user.controller.js";
-import isLoggedIn from "../middlewares/is-logged-in.middleware.js";
+import { signIn, signUp } from "../controllers";
+import { isLoggedIn } from "../middlewares";
 
 const userRouter = Router();
 
