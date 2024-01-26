@@ -31,6 +31,15 @@ export const getCategories = async (req, res) => {
     res.json({ categories, pages: Math.ceil(count / 12) });
 }
 
+export const getCategoryById = async (req, res) => {
+
+    const { id } = req.params;
+
+    const category = await Category.findById(id);
+
+    res.json(category);
+}
+
 export const createCategory = async (req, res) => {
 
     if (!req.body?.name)
