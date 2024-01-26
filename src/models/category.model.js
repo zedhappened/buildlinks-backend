@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema({
-    title: {
+    name: {
         type: String,
         required: true
     },
@@ -14,7 +14,7 @@ const categorySchema = new mongoose.Schema({
     parent: {
         type: mongoose.Schema.ObjectId,
         ref: 'Category',
-        default: "",
+        default: null,
     },
     showOnNavbar: {
         type: Boolean,
