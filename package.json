@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --import=extensionless/register src/server.js",
-    "start": "node --import=extensionless/register src/server.js"
+    "start": "node --import=extensionless/register src/server.js",
+    "seed": "node src/seeder.js"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Test User",
+    "email": "user@test.com",
+    "hashedPassword": "$2a$12$/CUcwwEc/NzrbZZ.elIf.uV8qtToMXeXQttZ6Jf/Eofs54DKw1li2",
+    "roles": [
+      "user"
+    ]
+  },
+  {
+    "name": "Test Admin",
+    "email": "admin@test.com",
+    "hashedPassword": "$2a$12$xGpV0W5KzY/xqdB2UyDXCukTeHe0LD2j1oUNxY.CLPzmGRmymxaZC",
+    "roles": [
+      "user",
+      "admin"
+    ]
+  }
+]
