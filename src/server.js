@@ -14,8 +14,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors(corsOptions));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: '35mb' }));
+app.use(express.urlencoded({ extended: true, limit: '35mb', parameterLimit: 50000, }));
 
 // middleware to add userId to the request
 app.use(authMiddleware)

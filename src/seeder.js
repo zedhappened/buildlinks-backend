@@ -2,8 +2,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import { User } from './models/index.js';
+import { Color, User } from './models/index.js';
 import users from './data/buildlinks.users.json' assert { type: 'json' };
+import colors from './data/buildlinks.colors.json' assert { type: 'json' };
 
 dotenv.config();
 
@@ -35,6 +36,9 @@ const seed = async () => {
 
     await User.deleteMany({});
     await User.insertMany(users);
+
+    await Color.deleteMany({});
+    await Color.insertMany(colors);
 
 
 }

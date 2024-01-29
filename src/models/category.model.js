@@ -16,14 +16,14 @@ const categorySchema = new mongoose.Schema({
         ref: 'Category',
         default: null,
     },
-    showOnNavbar: {
-        type: Boolean,
-        default: false,
-    },
     showOnHome: {
         type: Boolean,
         default: false,
     },
+    topCategory: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 const Category = mongoose.model('category', categorySchema);
